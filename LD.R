@@ -1,0 +1,20 @@
+purgedata = read.csv('/media/vsppraneeth/01D3522569C0B1A0/Work/Meat Metabolics/Derico Setyabrata_Meat Metabolomics_ALL/Purge Metabolomics_ALL/Purge metabolomics_ALL_Raw.tsv', sep = '\t')
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
