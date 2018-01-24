@@ -21,16 +21,57 @@ log_purgedata[,2:19] = log(raw_purgedata[,2:19],2)
 # Each muscle goes through 3 days = 9, 16, 23 days
 
 source('/media/vsppraneeth/01D3522569C0B1A0/Work/Meat Metabolics/Praneeth/Purge/C_Timeonly_Functions.R')
+library(PerformanceAnalytics)
+library(ggbiplot)
 
-#------------ Each sample controlled for only time ------------#
-raw_temp = get_values(raw_purgedata)
-norm_temp = get_values(norm_purgedata)
-log_temp = get_values(log_purgedata)
+#------------ Correlation ------------#
+
+# Sample-wise
+cplot(raw_purgedata[,c(2,8,14)],name = '/media/vsppraneeth/01D3522569C0B1A0/Work/Meat Metabolics/Praneeth/Purge/Analysis 1/Correlations/Raw/Raw_Sample_1')
+cplot(raw_purgedata[,c(3,9,15)],name = '/media/vsppraneeth/01D3522569C0B1A0/Work/Meat Metabolics/Praneeth/Purge/Analysis 1/Correlations/Raw/Raw_Sample_3')
+cplot(raw_purgedata[,c(4,10,16)],name = '/media/vsppraneeth/01D3522569C0B1A0/Work/Meat Metabolics/Praneeth/Purge/Analysis 1/Correlations/Raw/Raw_Sample_4')
+cplot(raw_purgedata[,c(5,11,17)],name = '/media/vsppraneeth/01D3522569C0B1A0/Work/Meat Metabolics/Praneeth/Purge/Analysis 1/Correlations/Raw/Raw_Sample_5')
+cplot(raw_purgedata[,c(6,12,18)],name = '/media/vsppraneeth/01D3522569C0B1A0/Work/Meat Metabolics/Praneeth/Purge/Analysis 1/Correlations/Raw/Raw_Sample_7')
+cplot(raw_purgedata[,c(7,13,19)],name = '/media/vsppraneeth/01D3522569C0B1A0/Work/Meat Metabolics/Praneeth/Purge/Analysis 1/Correlations/Raw/Raw_Sample_8')
+
+cplot(norm_purgedata[,c(2,8,14)],name = '/media/vsppraneeth/01D3522569C0B1A0/Work/Meat Metabolics/Praneeth/Purge/Analysis 1/Correlations/Normalized/Norm_Sample_1')
+cplot(norm_purgedata[,c(3,9,15)],name = '/media/vsppraneeth/01D3522569C0B1A0/Work/Meat Metabolics/Praneeth/Purge/Analysis 1/Correlations/Normalized/Norm_Sample_3')
+cplot(norm_purgedata[,c(4,10,16)],name = '/media/vsppraneeth/01D3522569C0B1A0/Work/Meat Metabolics/Praneeth/Purge/Analysis 1/Correlations/Normalized/Norm_Sample_4')
+cplot(norm_purgedata[,c(5,11,17)],name = '/media/vsppraneeth/01D3522569C0B1A0/Work/Meat Metabolics/Praneeth/Purge/Analysis 1/Correlations/Normalized/Norm_Sample_5')
+cplot(norm_purgedata[,c(6,12,18)],name = '/media/vsppraneeth/01D3522569C0B1A0/Work/Meat Metabolics/Praneeth/Purge/Analysis 1/Correlations/Normalized/Norm_Sample_7')
+cplot(norm_purgedata[,c(7,13,19)],name = '/media/vsppraneeth/01D3522569C0B1A0/Work/Meat Metabolics/Praneeth/Purge/Analysis 1/Correlations/Normalized/Norm_Sample_8')
+
+cplot(log_purgedata[,c(2,8,14)],name = '/media/vsppraneeth/01D3522569C0B1A0/Work/Meat Metabolics/Praneeth/Purge/Analysis 1/Correlations/Log/Log_Sample_1')
+cplot(log_purgedata[,c(3,9,15)],name = '/media/vsppraneeth/01D3522569C0B1A0/Work/Meat Metabolics/Praneeth/Purge/Analysis 1/Correlations/Log/Log_Sample_3')
+cplot(log_purgedata[,c(4,10,16)],name = '/media/vsppraneeth/01D3522569C0B1A0/Work/Meat Metabolics/Praneeth/Purge/Analysis 1/Correlations/Log/Log_Sample_4')
+cplot(log_purgedata[,c(5,11,17)],name = '/media/vsppraneeth/01D3522569C0B1A0/Work/Meat Metabolics/Praneeth/Purge/Analysis 1/Correlations/Log/Log_Sample_5')
+cplot(log_purgedata[,c(6,12,18)],name = '/media/vsppraneeth/01D3522569C0B1A0/Work/Meat Metabolics/Praneeth/Purge/Analysis 1/Correlations/Log/Log_Sample_7')
+cplot(log_purgedata[,c(7,13,19)],name = '/media/vsppraneeth/01D3522569C0B1A0/Work/Meat Metabolics/Praneeth/Purge/Analysis 1/Correlations/Log/Log_Sample_8')
+
+# Day-wise
+cplot(raw_purgedata[,c(2:7)],name = '/media/vsppraneeth/01D3522569C0B1A0/Work/Meat Metabolics/Praneeth/Purge/Analysis 1/Correlations/Raw/Raw_Day_9')
+cplot(raw_purgedata[,c(8:13)],name = '/media/vsppraneeth/01D3522569C0B1A0/Work/Meat Metabolics/Praneeth/Purge/Analysis 1/Correlations/Raw/Raw_Day_16')
+cplot(raw_purgedata[,c(14:19)],name = '/media/vsppraneeth/01D3522569C0B1A0/Work/Meat Metabolics/Praneeth/Purge/Analysis 1/Correlations/Raw/Raw_Day_23')
+
+cplot(norm_purgedata[,c(2:7)],name = '/media/vsppraneeth/01D3522569C0B1A0/Work/Meat Metabolics/Praneeth/Purge/Analysis 1/Correlations/Normalized/Norm_Day_9')
+cplot(norm_purgedata[,c(8:13)],name = '/media/vsppraneeth/01D3522569C0B1A0/Work/Meat Metabolics/Praneeth/Purge/Analysis 1/Correlations/Normalized/Norm_Day_16')
+cplot(norm_purgedata[,c(14:19)],name = '/media/vsppraneeth/01D3522569C0B1A0/Work/Meat Metabolics/Praneeth/Purge/Analysis 1/Correlations/Normalized/Norm_Day_23')
+
+cplot(log_purgedata[,c(2:7)],name = '/media/vsppraneeth/01D3522569C0B1A0/Work/Meat Metabolics/Praneeth/Purge/Analysis 1/Correlations/Log/Log_Day_9')
+cplot(log_purgedata[,c(8:13)],name = '/media/vsppraneeth/01D3522569C0B1A0/Work/Meat Metabolics/Praneeth/Purge/Analysis 1/Correlations/Log/Log_Day_16')
+cplot(log_purgedata[,c(14:19)],name = '/media/vsppraneeth/01D3522569C0B1A0/Work/Meat Metabolics/Praneeth/Purge/Analysis 1/Correlations/Log/Log_Day_23')
 
 
+#------------ Controlled for only time ------------#
+raw_time = get_values_TimeOnly(raw_purgedata)
+norm_time = get_values_TimeOnly(norm_purgedata)
+log_time = get_values_TimeOnly(log_purgedata)
 
 
-
+#------------ Controlled for only sample ------------#
+raw_time = get_values_SampleOnly(raw_purgedata)
+norm_time = get_values_SampleOnly(norm_purgedata)
+log_time = get_values_SampleOnly(log_purgedata)
 
 
 

@@ -1,4 +1,4 @@
-get_values = function(dataf){
+get_values_TimeOnly = function(dataf){
   n = rep(6,3)
   group = rep(1:3,n)
   
@@ -19,6 +19,38 @@ get_values = function(dataf){
     dataf$Tukey_day16_day9[i] = tukey_result$`as.factor(group)`[10]
     dataf$Tukey_day23_day9[i] = tukey_result$`as.factor(group)`[11]
     dataf$Tukey_day23_day16[i] = tukey_result$`as.factor(group)`[12]
+  }
+  return(dataf)
+}
+
+
+get_values_SampleOnly = function(dataf){
+  n = rep(3,6)
+  group = rep(1:6,n)
+  
+  for (i in 1:nrow(dataf)){
+    sample1 = as.numeric(as.vector(dataf[i,c(2,8,14)]))
+    sample3 = as.numeric(as.vector(dataf[i,c(3,9,15)]))
+    sample4 = as.numeric(as.vector(dataf[i,c(4,10,16)]))
+    sample5 = as.numeric(as.vector(dataf[i,c(5,11,17)]))
+    sample7 = as.numeric(as.vector(dataf[i,c(6,12,18)]))
+    sample8 = as.numeric(as.vector(dataf[i,c(7,13,19)]))
+    
+    tie = c(sample1,sample3,sample4,sample5,sample7,sample8)
+    
+    anova_result = anova(lm(tie ~ group))
+    dataf$p_anova[i] = anova_result$`Pr(>F)`[1]
+    
+    aov_object = aov(tie ~ as.factor(group))
+    tukey_result = TukeyHSD(aov_object)
+    
+    for(j in 1:nrow(tukey_result$`as.factor(group)`)){
+      dataf[i,paste0('Tukey_',rownames(tukey_result$`as.factor(group)`)[j])] = tukey_result$`as.factor(group)`[45+j]
+    }
+    
+    #dataf$Tukey_2_1[i] = tukey_result$`as.factor(group)`[10]
+    #dataf$Tukey_day23_day9[i] = tukey_result$`as.factor(group)`[11]
+    #dataf$Tukey_day23_day16[i] = tukey_result$`as.factor(group)`[12]
   }
   return(dataf)
 }
