@@ -9,7 +9,7 @@ get_values_TimeOnly = function(dataf){
     
     tie = c(day9,day16,day23)
     
-    anova_result = anova(lm(tie ~ group))
+    anova_result = anova(lm(tie ~ as.factor(group)))
     dataf$p_anova[i] = anova_result$`Pr(>F)`
     dataf$FC_day16_by_day9[i] = mean(day16)/mean(day9)
     dataf$FC_day9_by_day23[i] = mean(day9)/mean(day23)
@@ -38,7 +38,7 @@ get_values_SampleOnly = function(dataf){
     
     tie = c(sample1,sample3,sample4,sample5,sample7,sample8)
     
-    anova_result = anova(lm(tie ~ group))
+    anova_result = anova(lm(tie ~ as.factor(group)))
     dataf$p_anova[i] = anova_result$`Pr(>F)`[1]
     
     aov_object = aov(tie ~ as.factor(group))
